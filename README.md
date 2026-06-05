@@ -1,3 +1,43 @@
+# smart-codex
+
+**codex with GitSense intelligence layer**
+
+This is a fork of [openai/codex](https://github.com/openai/codex) that comes pre-loaded with a GitSense intelligence layer (`code-intent`).
+
+## What's Included
+
+- The complete codex source code (identical to upstream, with only this README modified and a new .gitsense directory)
+- A `code-intent` manifest that explains what each file does
+
+## Quick Start
+
+```bash
+# Install the GSC CLI (if not already installed)
+curl https://raw.githubusercontent.com/gitsense/chat/refs/heads/main/install.sh | bash
+
+# Clone this repository
+git clone https://github.com/gitsense/smart-codex
+cd smart-codex
+
+# Import the intelligence layer
+gsc manifest import code-intent
+
+# Search code with metadata context
+gsc rg --db code-intent --fields purpose skills
+```
+
+### Ask an Agent
+
+After importing the intelligence layer, start your agent (Claude Code, Codex, etc.) and have it run
+
+```
+gsc experts init
+```
+
+Then simply chat with it about the codebase. The AI will know how to query the intelligence layers on your behalf.
+
+---
+
 <p align="center"><strong>Codex CLI</strong> is a coding agent from OpenAI that runs locally on your computer.
 <p align="center">
   <img src="https://github.com/openai/codex/blob/main/.github/codex-cli-splash.png" alt="Codex CLI splash" width="80%" />
