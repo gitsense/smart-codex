@@ -214,7 +214,7 @@ Now jump to a fresh session, days later, nothing in context. Someone asks the pl
 The agent checks the lessons Brain:
 
 ```
-gsc query --db gsc-lessons --filter "tags=slash-command" --fields summary,review_checks
+gsc lessons search slash-command --fields summary,review_checks
 ```
 
 and tells them, before a single search or file open:
