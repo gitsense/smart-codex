@@ -1,1 +1,69 @@
-{"id":"lsn_019ec943-5c45-70b4-b6f1-62f2be5cbc56","schema_version":"1.0.0","created_at":"2026-06-15T03:11:35.493721Z","updated_at":"2026-06-15T03:11:35.493721Z","summary":"Adding a TUI slash command is a two-file change: define the variant in slash_command.rs and handle it in chatwidget/slash_dispatch.rs. Defining the variant alone compiles but does nothing.","details":"To add a slash command to the Codex TUI you must edit two files in different modules:\n\n1. codex-rs/tui/src/slash_command.rs - add a variant to the `SlashCommand` enum. The `description()` and `available_during_task()` matches are exhaustive, so the compiler forces you to add an arm to each. `supports_inline_args()`, `available_in_side_conversation()`, and `is_visible()` use `matches!`/defaults, so they are optional. Enum order is intentional: the file says \"DO NOT ALPHA-SORT! Enum order is presentation order in the popup\", so insert by intended popup placement, not alphabetically. Aliases and on-disk names use strum attributes (`serialize_all = \"kebab-case\"`, `#[strum(serialize = ...)]`, `#[strum(to_string = ...)]`).\n\n2. codex-rs/tui/src/chatwidget/slash_dispatch.rs - add an arm to `dispatch_command()`, which is where the command actually does something. This match has no `_ =\u003e` catch-all, so it is also compiler-forced once you are in the file.\n\nThe gotcha: slash_command.rs gives no pointer to slash_dispatch.rs. A variant with a `description()` arm will compile and appear, but the command is inert until `dispatch_command()` handles it. Discovery is the expensive part: `rg SlashCommand::` returns ~13 files / ~23k lines, but only slash_command.rs (303 lines) and slash_dispatch.rs (1078 lines) are edit targets. The rest are false positives to skip: bottom_pane/chat_composer.rs (~11k lines), bottom_pane/command_popup.rs, bottom_pane/chat_composer/slash_input.rs, bottom_pane/slash_commands.rs, and the test files under chatwidget/tests/ (slash_commands.rs, popups_and_settings.rs, etc.).","applies_to":{"files":["codex-rs/tui/src/chatwidget/slash_dispatch.rs","codex-rs/tui/src/slash_command.rs"],"linked_files":["codex-rs/tui/src/bottom_pane/chat_composer.rs","codex-rs/tui/src/bottom_pane/command_popup.rs","codex-rs/tui/src/bottom_pane/slash_commands.rs","codex-rs/tui/src/chatwidget/tests/slash_commands.rs"],"commands":["cargo test -p codex-tui"],"topics":["command-dispatch","slash-commands","tui"]},"tags":["command-dispatch","cross-file-coupling","exhaustive-match","slash-command","tui"],"keywords":["cargo-test-p-codex-tui","command-dispatch","cross-file-coupling","exhaustive-match","slash-command","slash-commands","tui"],"parent_keywords":["command-dispatch","command-knowledge","cross-file-coupling","exhaustive-match","file-knowledge","slash-command","topic-knowledge","tui"],"importance":"high","review_checks":["A `dispatch_command()` arm was added in chatwidget/slash_dispatch.rs, not just an enum variant in slash_command.rs (a variant alone compiles but is inert).","No command-registration logic was added to chat_composer.rs, command_popup.rs, or the chatwidget/tests files (these reference SlashCommand but are not where commands are defined or dispatched).","The enum variant was inserted by intended popup presentation order, not alphabetically.","description() was given user-visible help text and available_during_task() was set to the correct true/false (both compiler-forced).","supports_inline_args(), available_in_side_conversation(), and is_visible() were reviewed for whether the new command needs them."],"ai":{"provider":"anthropic","model_id":"claude-opus-4-8","agent":"Claude Code"},"confirmed_by":"human","confirmed_at":"2026-06-15T03:11:35.493721Z"}
+{
+  "id": "lsn_019ec943-5c45-70b4-b6f1-62f2be5cbc56",
+  "schema_version": "1.0.0",
+  "created_at": "2026-06-15T03:11:35.493721Z",
+  "updated_at": "2026-06-15T03:11:35.493721Z",
+  "summary": "Adding a TUI slash command is a two-file change: define the variant in slash_command.rs and handle it in chatwidget/slash_dispatch.rs. Defining the variant alone compiles but does nothing.",
+  "details": "To add a slash command to the Codex TUI you must edit two files in different modules:\n\n1. codex-rs/tui/src/slash_command.rs - add a variant to the `SlashCommand` enum. The `description()` and `available_during_task()` matches are exhaustive, so the compiler forces you to add an arm to each. `supports_inline_args()`, `available_in_side_conversation()`, and `is_visible()` use `matches!`/defaults, so they are optional. Enum order is intentional: the file says \"DO NOT ALPHA-SORT! Enum order is presentation order in the popup\", so insert by intended popup placement, not alphabetically. Aliases and on-disk names use strum attributes (`serialize_all = \"kebab-case\"`, `#[strum(serialize = ...)]`, `#[strum(to_string = ...)]`).\n\n2. codex-rs/tui/src/chatwidget/slash_dispatch.rs - add an arm to `dispatch_command()`, which is where the command actually does something. This match has no `_ =>` catch-all, so it is also compiler-forced once you are in the file.\n\nThe gotcha: slash_command.rs gives no pointer to slash_dispatch.rs. A variant with a `description()` arm will compile and appear, but the command is inert until `dispatch_command()` handles it. Discovery is the expensive part: `rg SlashCommand::` returns ~13 files / ~23k lines, but only slash_command.rs (303 lines) and slash_dispatch.rs (1078 lines) are edit targets. The rest are false positives to skip: bottom_pane/chat_composer.rs (~11k lines), bottom_pane/command_popup.rs, bottom_pane/chat_composer/slash_input.rs, bottom_pane/slash_commands.rs, and the test files under chatwidget/tests/ (slash_commands.rs, popups_and_settings.rs, etc.).",
+  "topic": "tui",
+  "related_topics": [
+    "slash-commands",
+    "tui"
+  ],
+  "applies_to": {
+    "files": [
+      "codex-rs/tui/src/chatwidget/slash_dispatch.rs",
+      "codex-rs/tui/src/slash_command.rs"
+    ],
+    "linked_files": [
+      "codex-rs/tui/src/bottom_pane/chat_composer.rs",
+      "codex-rs/tui/src/bottom_pane/command_popup.rs",
+      "codex-rs/tui/src/bottom_pane/slash_commands.rs",
+      "codex-rs/tui/src/chatwidget/tests/slash_commands.rs"
+    ],
+    "commands": [
+      "cargo test -p codex-tui"
+    ]
+  },
+  "tags": [
+    "command-dispatch",
+    "cross-file-coupling",
+    "exhaustive-match",
+    "slash-command",
+    "tui"
+  ],
+  "keywords": [
+    "cargo-test-p-codex-tui",
+    "command-dispatch",
+    "cross-file-coupling",
+    "exhaustive-match",
+    "slash-command",
+    "slash-commands",
+    "tui"
+  ],
+  "parent_keywords": [
+    "command-dispatch",
+    "command-knowledge",
+    "cross-file-coupling",
+    "exhaustive-match",
+    "file-knowledge",
+    "slash-command",
+    "topic-knowledge",
+    "tui"
+  ],
+  "importance": "high",
+  "review_checks": [
+    "A `dispatch_command()` arm was added in chatwidget/slash_dispatch.rs, not just an enum variant in slash_command.rs (a variant alone compiles but is inert).",
+    "No command-registration logic was added to chat_composer.rs, command_popup.rs, or the chatwidget/tests files (these reference SlashCommand but are not where commands are defined or dispatched).",
+    "The enum variant was inserted by intended popup presentation order, not alphabetically.",
+    "description() was given user-visible help text and available_during_task() was set to the correct true/false (both compiler-forced).",
+    "supports_inline_args(), available_in_side_conversation(), and is_visible() were reviewed for whether the new command needs them."
+  ],
+  "ai": {
+    "provider": "anthropic",
+    "model_id": "claude-opus-4-8",
+    "agent": "Claude Code"
+  },
+  "confirmed_by": "human",
+  "confirmed_at": "2026-06-15T03:11:35.493721Z"
+}
