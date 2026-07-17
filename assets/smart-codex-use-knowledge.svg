@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="420" viewBox="0 0 1600 420" role="img" aria-labelledby="title desc">
+  <title id="title">Use Codex repository knowledge locally with gsc</title>
+  <desc id="desc">After smart-codex is cloned, gsc imports its committed manifests, builds local SQLite Brains, and lets a coding agent query them.</desc>
+  <rect width="1600" height="420" fill="#ffffff"/>
+
+  <rect x="45" y="58" width="330" height="300" rx="6" fill="#fafafa" stroke="#111111" stroke-width="3"/>
+  <text x="210" y="108" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle">ANY CLONE</text>
+  <text x="210" y="158" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="middle">smart-codex</text>
+  <line x1="90" y1="187" x2="330" y2="187" stroke="#cccccc" stroke-width="2"/>
+  <text x="210" y="236" fill="#333333" font-family="Arial, Helvetica, sans-serif" font-size="20" text-anchor="middle">Source code</text>
+  <text x="210" y="276" fill="#333333" font-family="Arial, Helvetica, sans-serif" font-size="20" text-anchor="middle">Committed manifests</text>
+  <text x="210" y="322" fill="#666666" font-family="Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle">Knowledge arrives with the clone</text>
+
+  <path d="M395 208 H455" fill="none" stroke="#111111" stroke-width="4"/>
+  <path d="M455 208 l-15 -11 v22 z" fill="#111111"/>
+
+  <rect x="475" y="58" width="270" height="300" rx="6" fill="#f3f3f3" stroke="#111111" stroke-width="4"/>
+  <text x="610" y="108" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle">LOCAL INTERFACE</text>
+  <text x="610" y="170" fill="#111111" font-family="Menlo, Consolas, monospace" font-size="34" font-weight="700" text-anchor="middle">gsc</text>
+  <line x1="520" y1="200" x2="700" y2="200" stroke="#bbbbbb" stroke-width="2"/>
+  <text x="610" y="253" fill="#222222" font-family="Arial, Helvetica, sans-serif" font-size="20" text-anchor="middle">Import manifests</text>
+  <text x="610" y="294" fill="#222222" font-family="Arial, Helvetica, sans-serif" font-size="20" text-anchor="middle">Build Brains</text>
+
+  <path d="M765 208 H825" fill="none" stroke="#111111" stroke-width="4"/>
+  <path d="M825 208 l-15 -11 v22 z" fill="#111111"/>
+
+  <rect x="845" y="58" width="315" height="300" rx="6" fill="#fafafa" stroke="#111111" stroke-width="3"/>
+  <text x="1002" y="108" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle">GENERATED LOCALLY</text>
+  <text x="1002" y="158" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="middle">SQLite Brains</text>
+  <line x1="890" y1="187" x2="1115" y2="187" stroke="#cccccc" stroke-width="2"/>
+  <text x="1002" y="247" fill="#333333" font-family="Menlo, Consolas, monospace" font-size="20" text-anchor="middle">.gitsense/*.db</text>
+  <text x="1002" y="292" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="18" text-anchor="middle">Queryable and fast</text>
+  <text x="1002" y="325" fill="#777777" font-family="Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle">Generated | gitignored</text>
+
+  <path d="M1180 208 H1240" fill="none" stroke="#111111" stroke-width="4"/>
+  <path d="M1240 208 l-15 -11 v22 z" fill="#111111"/>
+
+  <rect x="1260" y="58" width="295" height="300" rx="6" fill="#fafafa" stroke="#111111" stroke-width="3"/>
+  <text x="1407" y="108" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle">AT THE MOMENT OF WORK</text>
+  <text x="1407" y="158" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" text-anchor="middle">Coding agent</text>
+  <line x1="1305" y1="187" x2="1510" y2="187" stroke="#cccccc" stroke-width="2"/>
+  <text x="1407" y="241" fill="#333333" font-family="Menlo, Consolas, monospace" font-size="19" text-anchor="middle">gsc rg</text>
+  <text x="1407" y="282" fill="#333333" font-family="Menlo, Consolas, monospace" font-size="19" text-anchor="middle">gsc query</text>
+  <text x="1407" y="323" fill="#333333" font-family="Menlo, Consolas, monospace" font-size="19" text-anchor="middle">gsc knowledge</text>
+</svg>
